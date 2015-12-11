@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Desyk's page{% endblock %}
+
+
+{% block header %}
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Volodymyr Desyk</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Contacts</a></li>
+      <li><a href="#">Personal Area</a></li>
+    </ul>
+  </div>
+{% endblock %}
+
+
+{% block left_sidebar %}
+  <img src="{% static 'homepage/images/desyk_avatar.jpg' %}" width="140" />
+
+  <div class="no-margin-p">
+    <h4 class="sub-header">Languages </h4>
+
+    <p>English – Intermediate</p>
+    <p>Russian and Ukrainian - fluent</p>
+
+    <h4 class="sub-header">Personal skills</h4>
+
+    <ul id="sidebar-ul">
+      <li>good perception of new information</li>
+      <li>good learnability</li>
+      <li>team player</li>
+      <li>goal oriented</li>
+      <li>high personal standard and standard of communication</li>
+      <li>attentive to details</li>
+      <li>completion of tasks within the fixed time limit</li>
+    </ul>
+
+    <h4 class="sub-header">Personal details</h4>
+
+    <p>Mobile: (063) 344-38-29</p>
+    <p>E-mail: volodymyr.desyk at gmail dot com</p>
+    <br/>
+    <p>DOB: 12/09/1984</p>
+    <p>Driving license: Yes</p>
+  </div>
+{% endblock %}
+
+
+{% block main %}
+  <h1 class="page-header">Junior Python developer</h1>
+  <h4 class="sub-header">Objectives</h4>
+
+  <p>Obtain position of Python developer with ability to learn and growth by means of performance of task assigned and achievement of results set in team of associates.</p>
+  <h4 class="sub-header">PROFESSIONAL SKILLS</h4>
+  <ul>
+    <li>Python (Django)</li>
+  </ul>
+  <p>Fundamentals of:</p>
+  <ul>
+    <li>HTML/CSS</li>
+    <li>JavaScript/jQuery</li>
+    <li>С/С++</li>
+  </ul>
+    <p>Basic knowledge:</p>
+  <ul>
+    <li>Test-driven development</li>
+    <li>OOP</li>
+    <li>SQL</li>
+    <li>Git</li>
+    <li>Design Patterns</li>
+  </ul>
+
+  <h4 class="sub-header">Work experience</h4>
+
+  <div class="no-margin-p">
+    <p><strong>10.2011 – 02.2015</strong></p>
+    <p><strong>Private entrepreneur</strong></p>
+    <p>Organization of high quality working process of fulfilment of clients’ orders, development of successfully selling products.</p>
+    <br/>
+    <p><strong>11.06.2007-01.07.2011</strong></p>
+    <p><strong>«Techno Service»</strong></p>
+    <p><strong>Engineer designing feeble-current systems</strong></p>
+    <p>Designing of feeble-current systems,  obtaining approvals for project documents with state authorities and project follow-up</p>
+    <br/>
+    <p><strong>02.08.2005 – 07.06.2007</strong></p>
+    <p><strong>«ULYS Systems»</strong></p>
+    <p><strong>Design engineer</strong></p>
+    <p>Designing of systems: fire warning, protective signaling and access control</p>
+  </div>
+
+  <h4 class="sub-header">Professional studies</h4>
+
+  <p><strong>2015</strong></p>
+  <ul>
+    <li>Online studies HTML & CSS, Сodecademy.com</li>
+    <li>Online studies JavaScript & jQuery, Сodecademy.com</li>
+    <li>Online studies «Principles of computing», Rice University, Coursera</li>
+    <li>Online studies «An Introduction to Interactive Programming in Python», Rice University, Coursera</li>
+    <li>Programming studies “Basics Python programming” (Django), Perspective XXI century</li>
+  </ul>
+  <p><strong>2014</strong></p>
+  <ul>
+    <li>Online programming studies Python, Сodecademy.com</li>
+  </ul>
+  <p><strong>2013-2014</strong></p>
+  <ul>
+    <li>Programming studies С/С++ , Boot Camp, Devclub</li>
+  </ul>
+  <p><strong>2001-2006</strong></p>
+  <dev class="no-margin-p">
+  <ul>
+    <li>National Aviation University (NAU)</li>
+    <p>Specialisation: Informational security in computer systems and networks (specialist)</p>
+    <p>Average point: 4,5 (according to the 5-point scale)</p>
+  </ul>
+{% endblock %}
+
+
+{% block right_sidebar %}
+  {% if request.user.is_authenticated %}
+    <h2> Hi {{ full_name }}! </h2>
+    <p><a href="{% url 'homepage:logout' %}"><button type="button">Log Out</button></a></p>
+  {% else %}
+    <form action="." method="post">
+      {% csrf_token %}
+      <label for="username">User name:</label>
+      <input type="text" name="username" value="" id="username">
+      <label for="password">Password:</label>
+      <input type="password" name="password" value="" id="password">
+      <br/>
+      <input type="submit" value="login" />
+    </form>
+    {% if error_msg %}
+      <p class="error"> {{ error_msg }} </p>
+    {% endif %}
+    <hr>
+    <a href="{% url 'homepage:register' %}"><button type="button">Registration</button></a>
+  {% endif %}
+{% endblock %}

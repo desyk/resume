@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Registration{% endblock %}
+
+
+{% block header %}
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Volodymyr Desyk</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'homepage:index' %}">Home</a></li>
+      <li><a href="#">Contacts</a></li>
+      <li><a href="#">Personal Area</a></li>
+    </ul>
+  </div>
+{% endblock %}
+
+
+{% block main %}
+  <h4 class="sub-header">Register a new user</h4>
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="field-wrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {% if field.field.required %}
+            *
+            {% endif %}
+            <br/>
+            {{ field }}
+          </div>
+        {% endfor %}
+        <input type="submit" value="Submit" />
+    </form>
+{{ args.username }}
+{% endblock %}
