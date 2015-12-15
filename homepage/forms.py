@@ -10,7 +10,6 @@ from django.contrib.auth import get_user_model
 MyUser = get_user_model()
 YEARS = range(datetime.datetime.now().year, 
               datetime.datetime.now().year - 70, -1)
-print(YEARS)
 
 
 class RegistrationForm(UserCreationForm):
@@ -22,14 +21,16 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
     email = forms.EmailField(widget=forms.EmailInput)
-    phone_number = forms.CharField()
+    phone_number = forms.CharField(required=False)
     birthday = forms.DateField(widget=extras.SelectDateWidget(years=YEARS))
+    # avatar = forms.ImageField()
     captcha = CaptchaField()
   
     class Meta:
         model = MyUser
         fields = ('username', 'password1', 'password2', 'first_name', 
-                  'last_name', 'email', 'phone_number', 'birthday', 'captcha')  
+                  'last_name', 'email', 'phone_number', 'birthday',
+                  'avatar', 'captcha')  
 
     def save(self, commit = True):   
         user = super(RegistrationForm, self).save(commit = False)
@@ -40,6 +41,7 @@ class RegistrationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.phone_number = self.cleaned_data['phone_number']
         user.birthday = self.cleaned_data['birthday']
+        # user.avatar = request.FILES['avatar']
 
         if commit:
             user.save()

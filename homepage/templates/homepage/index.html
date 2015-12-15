@@ -123,7 +123,11 @@
 
 {% block right_sidebar %}
   {% if request.user.is_authenticated %}
-    <h2> Hi {{ full_name }}! </h2>
+    <h2> Hi, {{ full_name }}! </h2>
+    <!--     <p><img src="/media/profile_images/DSC01303_cut3_400_B43WM2K.png" width="100" /></p> -->
+    {% if avatar %}
+      <p><img src="{{ avatar }}" width="100" /></p>
+    {% endif %}
     <p><a href="{% url 'homepage:logout' %}"><button type="button">Log Out</button></a></p>
   {% else %}
     <form action="." method="post">
