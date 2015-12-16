@@ -34,7 +34,7 @@ def index(request):
             avatar = None
 
         return render(request, 'homepage/index.html', 
-                      {'full_name' : request.user.username, 
+                      {'username' : request.user.username, 
                        'avatar' : avatar})
     else:
         return render(request, 'homepage/index.html')

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'homepage',
     'captcha',
+    'passwords',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,13 +105,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Email data
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'volodymyr.desyk@gmail.com'
 EMAIL_HOST_PASSWORD = 'S90meMa@$'
 
+# Custom Auth model
+
 AUTH_USER_MODEL = 'homepage.User'
+
+# Media files (images etc.)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Password strength settings
+
+PASSWORD_MIN_LENGTH = 6
+PASSWORD_MAX_LENGTH = 16
