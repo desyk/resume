@@ -23,10 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'lx5uwalpmz!zj(0tn(wfgjikd$1h673+)y%_vjkao)_-h+%g_p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['desyk.pythonanywhere.com']
 
+# # For local machine uncomment:
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -81,7 +84,7 @@ WSGI_APPLICATION = 'light_test.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
     }
 }
 
