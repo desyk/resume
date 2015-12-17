@@ -21,7 +21,7 @@ def index(request):
 
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect('/homepage')
+            return HttpResponseRedirect('/')
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
             return render(request, 'homepage/index.html', 
@@ -57,7 +57,7 @@ def register(request):
 
 
 
-            return HttpResponseRedirect('/homepage')
+            return HttpResponseRedirect('/')
             # return render(request, "homepage/index.html")
     else:
         form = RegistrationForm()
@@ -67,4 +67,4 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/homepage')
+    return HttpResponseRedirect('/')

@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^homepage/', include('homepage.urls', namespace='homepage')),
+    url(r'^', include('homepage.urls', namespace='homepage')),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
